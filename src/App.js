@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { DatePicker } from '@progress/kendo-dateinputs-react-wrapper';
+import { NumericTextBox } from '@progress/kendo-inputs-react-wrapper';
+import { Chart } from '@progress/kendo-charts-react-wrapper';
+import { Button } from '@progress/kendo-buttons-react-wrapper';
 import '@progress/kendo-ui';
 import '@progress/kendo-theme-default/dist/all.css';
+import './App.css';
 
 class App extends Component {
     constructor(props){
@@ -21,7 +25,10 @@ class App extends Component {
     render() {
     return (
       <div className="App">
-        <div className = "date-picker">
+        <h1> A Form For Fun</h1>
+        <div className = "date-inputs">
+        <div className = "date-picker-box">
+            <h3> Check in: </h3>
             <DatePicker
                 value={ this.dateTime }
                 min={ new Date(2017, 11, 1)}
@@ -30,6 +37,33 @@ class App extends Component {
                 change={ this.onchange }
             />
         </div>
+        <div className = "date-picker-box">
+            <h3> Check out: </h3>
+            <DatePicker
+                value={ this.dateTime }
+                min={ new Date(2017, 11, 1)}
+                max={ new Date( 2018, 11, 1)}
+                format={ "yyyy/MM/dd" }
+                change={ this.onchange }
+            />
+        </div>
+        </div>
+            <div className="numeric-inputs">
+                <div className="numeric-textbox-box">
+                    <h3>Min $: </h3>
+                    <NumericTextBox
+                        decimals={ 2 }
+                        format = 'c0'
+                        min={ 0 }
+                        max={ 500 }
+                        round={ true }
+                        spinner={ true }
+                        value={ 22 }
+                    ></NumericTextBox>
+                </div>
+            </div>
+        <Chart series={[{ data: [1, 2, .5]}, { data: [.5, 1, 1]}]}/>
+        <Button> Check Rates </Button>
       </div>
     );
   }
